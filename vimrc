@@ -191,15 +191,8 @@ cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
 
 " VAM/plugins setup {{{
 " Return an array of addons from a file
-fun GetAddonsList(filename)
-  let s:addons = readfile(a:filename)
-  for addon in s:addons
-    " Remove comments and empty lines
-    if match(addon, '"') == 0 || strlen(addon) == 0
-      call remove(s:addons, index(s:addons, addon))
-    endif
-  endfor
-  return s:addons
+fun GetAddonsList(foo)
+  return filter(readfile(a:foo), 'v:val !~ "^\\s*$\\|^\""')
 endf
 
 " Tweak from VAM's recommended way to install VAM.
