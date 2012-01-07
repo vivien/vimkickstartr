@@ -191,8 +191,8 @@ cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
 
 " VAM/plugins setup {{{
 " Return an array of addons from a file
-fun GetAddonsList(foo)
-  return filter(readfile(a:foo), 'v:val !~ "^\\s*$\\|^\""')
+fun GetAddonsList(filename)
+  return filter(readfile(a:filename), 'v:val !~ "^\\s*$\\|^\""')
 endf
 
 " Tweak from VAM's recommended way to install VAM.
