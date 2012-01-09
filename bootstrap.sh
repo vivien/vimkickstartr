@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Backup existing Vim files
 echo "Backing up your ViM config..."
 BAK=~/.vim.bak_`date "+%d%m%Y_%H%M%S"`
 mkdir "$BAK"
