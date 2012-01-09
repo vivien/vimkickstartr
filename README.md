@@ -14,6 +14,10 @@ For the lazy:
 
     wget https://raw.github.com/v0n/vim-kickstart/master/vimrc -O ~/.vimrc
 
+or do it in a safer way (backups your old ViM config first):
+
+    wget https://raw.github.com/v0n/vim-kickstart/master/bootstrap.sh -q -O- | bash
+
 List every plugin names you want in `~/.vim-addons`. For instance:
 
     " My list of ViM addons
