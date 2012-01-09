@@ -30,6 +30,60 @@
 " Plugins list. Populated here and/or from the ~/.vim-addons file.
 let g:addons = []
 
+" VAM setup {{{
+" Return an array of addons from a file
+fun GetAddonsList(filename)
+  return filter(readfile(a:filename), 'v:val !~ "^\\s*$\\|^\""')
+endf
+
+" Tweak from VAM's recommended way to install VAM.
+" See https://github.com/MarcWeber/vim-addon-manager/blob/master/doc/vim-addon-manager.txt#L84
+fun SetupVAM()
+  " YES, you can customize this vam_install_path path and everything still works!
+  let vam_install_path = expand('$HOME') . '/.vim/vim-addons'
+  exec 'set runtimepath+='.vam_install_path.'/vim-addon-manager'
+
+  " * unix based os users may want to use this code checking out VAM
+  " * windows users want to use http://mawercer.de/~marc/vam/index.php
+  "   to fetch VAM, VAM-known-repositories and the listed plugins
+  "   without having to install curl, unzip, git tool chain first
+  let s:using_vam = 1 " default to using VAM
+    let s:auto_install = 0
+  if !filereadable(vam_install_path.'/vim-addon-manager/.git/config')
+    let s:using_vam = confirm("Install VAM (git clone into ".vam_install_path.")?","&Y\n&N")
+    if (s:using_vam == 1)
+      " I'm sorry having to add this reminder. Eventually it'll pay off.
+      "call confirm("Remind yourself that most plugins ship with documentation (README*, doc/*.txt). Its your first source of knowledge. If you can't find the info you're looking for in reasonable time ask maintainers to improve documentation")
+      exec '!p='.shellescape(vam_install_path).'; mkdir -p "$p" && cd "$p" && git clone --depth 1 git://github.com/MarcWeber/vim-addon-manager.git'
+      " VAM run helptags automatically if you install or update plugins
+      exec 'helptags '.fnameescape(vam_install_path.'/vim-addon-manager/doc')
+      let s:auto_install = confirm("Auto install addons (do not prompt)?", "&Y\n&N") % 2
+    endif
+  endif
+
+  if (s:using_vam == 1)
+    " disable sources whose version control command line tool is not
+    " installed. If you need more control override the MergeSources
+    " function
+    if (!exists('g:vim_addon_manager')) | let g:vim_addon_manager = {} | endif
+    for scm in ['hg', 'git', 'svn', 'bzr']
+      let g:vim_addon_manager[scm.'_support'] = executable(scm)
+    endfor
+
+    " Add addons from ~/.vim-addons if this file exists
+    let s:addons_file = expand('$HOME').'/.vim-addons'
+    if filereadable(s:addons_file)
+      call extend(g:addons, GetAddonsList(s:addons_file))
+    endif
+    call vam#ActivateAddons(g:addons, {'auto_install' : s:auto_install})
+  endif
+
+  unlet g:addons
+endf
+
+call SetupVAM()
+" }}}
+
 " Vim global configuration {{{
 " Mostly stolen from Janus.
 
@@ -187,60 +241,6 @@ map <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 " Inserts the path of the currently edited file into a command
 " Command mode: Ctrl+P
 cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
-" }}}
-
-" VAM/plugins setup {{{
-" Return an array of addons from a file
-fun GetAddonsList(filename)
-  return filter(readfile(a:filename), 'v:val !~ "^\\s*$\\|^\""')
-endf
-
-" Tweak from VAM's recommended way to install VAM.
-" See https://github.com/MarcWeber/vim-addon-manager/blob/master/doc/vim-addon-manager.txt#L84
-fun SetupVAM()
-  " YES, you can customize this vam_install_path path and everything still works!
-  let vam_install_path = expand('$HOME') . '/.vim/vim-addons'
-  exec 'set runtimepath+='.vam_install_path.'/vim-addon-manager'
-
-  " * unix based os users may want to use this code checking out VAM
-  " * windows users want to use http://mawercer.de/~marc/vam/index.php
-  "   to fetch VAM, VAM-known-repositories and the listed plugins
-  "   without having to install curl, unzip, git tool chain first
-  let s:using_vam = 1 " default to using VAM
-    let s:auto_install = 0
-  if !filereadable(vam_install_path.'/vim-addon-manager/.git/config')
-    let s:using_vam = confirm("Install VAM (git clone into ".vam_install_path.")?","&Y\n&N")
-    if (s:using_vam == 1)
-      " I'm sorry having to add this reminder. Eventually it'll pay off.
-      "call confirm("Remind yourself that most plugins ship with documentation (README*, doc/*.txt). Its your first source of knowledge. If you can't find the info you're looking for in reasonable time ask maintainers to improve documentation")
-      exec '!p='.shellescape(vam_install_path).'; mkdir -p "$p" && cd "$p" && git clone --depth 1 git://github.com/MarcWeber/vim-addon-manager.git'
-      " VAM run helptags automatically if you install or update plugins
-      exec 'helptags '.fnameescape(vam_install_path.'/vim-addon-manager/doc')
-      let s:auto_install = confirm("Auto install addons (do not prompt)?", "&Y\n&N") % 2
-    endif
-  endif
-
-  if (s:using_vam == 1)
-    " disable sources whose version control command line tool is not
-    " installed. If you need more control override the MergeSources
-    " function
-    if (!exists('g:vim_addon_manager')) | let g:vim_addon_manager = {} | endif
-    for scm in ['hg', 'git', 'svn', 'bzr']
-      let g:vim_addon_manager[scm.'_support'] = executable(scm)
-    endfor
-
-    " Add addons from ~/.vim-addons if this file exists
-    let s:addons_file = expand('$HOME').'/.vim-addons'
-    if filereadable(s:addons_file)
-      call extend(g:addons, GetAddonsList(s:addons_file))
-    endif
-    call vam#ActivateAddons(g:addons, {'auto_install' : s:auto_install})
-  endif
-
-  unlet g:addons
-endf
-
-call SetupVAM()
 " }}}
 
 " vim: fdm=marker
