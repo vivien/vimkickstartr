@@ -1,0 +1,16 @@
+" Janus default plugins
+" https://github.com/carlhuda/janus
+
+The_NERD_tree
+ack
+align
+Command-T
+Conque_Shell
+github:michaeljsmith/vim-indent-object
+surround
+The_NERD_Commenter
+supertab
+taglist
+fugitive
+Gist
+ZoomWin
