@@ -1,4 +1,10 @@
-" List of Vim addons
+" Some useful Vim addons
+" A line starting with a " is a comment.
 
+"The_NERD_tree
+"Tagbar
 "snipmate-snippets
+"align
+"surround
 "vim-addon-local-vimrc
+"github:v0n/vim-addon-csa256

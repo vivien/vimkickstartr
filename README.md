@@ -25,6 +25,9 @@ List every plugin names you want in `~/.vim-addons`. For instance:
     supertab
     fugitive
 
+For details, type `:he VAM-addon-names` in ViM, or checkout some
+[sample addons lists](https://github.com/v0n/vim-kickstart/tree/master/sample_addons_lists).
+
 On the next start, ViM will fetch the
 [vim-addon-manager](https://github.com/MarcWeber/vim-addon-manager),
 and install every plugin you've listed in your `~/.vim-addons` file.
