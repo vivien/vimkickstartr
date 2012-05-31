@@ -7,30 +7,28 @@
 Usage
 -----
 
-Just copy this [vimrc](https://github.com/v0n/vim-kickstart/blob/master/vimrc)
-into your `~/.vimrc`, and you're ready!
+Just put the content of this
+[vimrc](https://github.com/v0n/vim-kickstart/blob/master/vimrc) into
+your `~/.vimrc` file, and you're ready!
 
-For the lazy:
-
-    wget https://raw.github.com/v0n/vim-kickstart/master/vimrc -O ~/.vimrc
-
-or do it in a safer way (backups your old ViM config first):
+Do it in a safe way (backing up your current ViM config first) with:
 
     wget https://raw.github.com/v0n/vim-kickstart/master/bootstrap.sh -q -O- | bash
 
-List every plugin names you want in `~/.vim-addons`. For instance:
+Then, list every plugin you want in your `~/.vim-addons` file.
+For instance:
 
     " My list of ViM addons
     snipmate-snippets
     supertab
     fugitive
 
-For details, type `:he VAM-addon-names` in ViM, or checkout some
-[sample addons lists](https://github.com/v0n/vim-kickstart/tree/master/sample_addons_lists).
+To find out some plugin names, checkout some ViM KickStart
+[sample addons lists](https://github.com/v0n/vim-kickstart/tree/master/sample_addons_lists), or type `:he VAM-addon-names` from within ViM for details.
 
 On the next start, ViM will fetch the
 [vim-addon-manager](https://github.com/MarcWeber/vim-addon-manager),
-and install every plugin you've listed in your `~/.vim-addons` file.
+download and activate every plugin you've listed in `~/.vim-addons`.
 
 See the VAM documentation for useful commands, such as `:UpdateAddons`!
 
