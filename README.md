@@ -13,7 +13,7 @@ your `~/.vimrc` file, and you're ready!
 
 Do it in a safe way (backing up your current ViM config first) with:
 
-    wget https://raw.github.com/v0n/vim-kickstart/master/bootstrap.sh -q -O- | bash
+    curl -sS -L https://raw.github.com/v0n/vim-kickstart/master/bootstrap.sh | bash
 
 Then, list every plugin you want in your `~/.vim-addons` file.
 For instance:
