@@ -61,9 +61,13 @@ fun! SetupVAM()
   if filereadable(s:addons_file)
     call extend(g:addons, GetAddonsList(s:addons_file))
   endif
-  call vam#ActivateAddons(g:addons, {'auto_install' : 0})
+  call vam#ActivateAddons(g:addons)
 endfun
 
+let g:vim_addon_manager = {}
+let g:vim_addon_manager['auto_install'] = 1
+let g:vim_addon_manager['shell_commands_run_method'] = "system"
+set nomore
 call SetupVAM()
 unlet g:addons
 " }}}
