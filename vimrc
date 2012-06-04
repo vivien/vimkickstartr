@@ -30,25 +30,14 @@
 " Plugins list. Populated here and/or from the ~/.vim-addons file.
 let g:addons = []
 
-" VAM setup {{{
-
-" Hack of the recommended way to install VAM,
-" used to activate plugins from the addons file.
-" The original VAM installation is explained by typing:
-"
-"   :he VAM-installation
+" VAM Setup {{{
+" :he VAM-installation
 
 fun! EnsureVamIsOnDisk(vam_install_path)
-  if filereadable(a:vam_install_path.'/vim-addon-manager/.git/config')
-    return 1
-  elseif confirm("Clone VAM into ".a:vam_install_path."?","&Y\n&N") == 1
+  if !filereadable(a:vam_install_path.'/vim-addon-manager/.git/config')
     call mkdir(a:vam_install_path, 'p')
     execute '!git clone --depth=1 git://github.com/MarcWeber/vim-addon-manager '.shellescape(a:vam_install_path, 1).'/vim-addon-manager'
-
     exec 'helptags '.fnameescape(a:vam_install_path.'/vim-addon-manager/doc')
-    return 1
-  else
-    return 0
   endif
 endf
 
@@ -59,13 +48,11 @@ endf
 fun! SetupVAM()
   let g:vim_addon_manager = {}
   let g:vim_addon_manager['auto_install'] = 1
-  let g:vim_addon_manager['shell_commands_run_method'] = "system"
+  let g:vim_addon_manager['shell_commands_run_method'] = 'system'
   set nomore
 
   let vam_install_path = expand('$HOME') . '/.vim/vim-addons'
-  if EnsureVamIsOnDisk(vam_install_path) == 0
-    return
-  endif
+  call EnsureVamIsOnDisk(vam_install_path)
   exec 'set runtimepath+='.vam_install_path.'/vim-addon-manager'
 
   let s:addons_file = expand('$HOME').'/.vim-addons'
@@ -73,10 +60,10 @@ fun! SetupVAM()
     call extend(g:addons, GetAddonsList(s:addons_file))
   endif
   call vam#ActivateAddons(g:addons)
+  unlet g:addons
 endfun
 
 call SetupVAM()
-unlet g:addons
 " }}}
 
 " Vim global configuration {{{
