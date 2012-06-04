@@ -71,7 +71,7 @@ call SetupVAM()
 
 set nocompatible
 
-set number
+set nonumber
 set ruler
 syntax on
 
