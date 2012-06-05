@@ -87,7 +87,7 @@ set expandtab
 set list listchars=tab:\ \ ,trail:·
 
 " Searching
-set hlsearch
+set nohlsearch
 set incsearch
 set ignorecase
 set smartcase
