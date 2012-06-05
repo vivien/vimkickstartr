@@ -24,7 +24,7 @@ For instance:
     fugitive
 
 To find out some plugin names, checkout some ViM KickStart
-[sample addons lists](https://github.com/v0n/vim-kickstart/tree/master/sample_addons_lists), or type `:he VAM-addon-names` from within ViM for details.
+[sample addons lists](https://github.com/v0n/vim-kickstart/tree/master/lists), or type `:he VAM-addon-names` from within ViM for details.
 
 On the next start, ViM will fetch the
 [vim-addon-manager](https://github.com/MarcWeber/vim-addon-manager),

@@ -1,0 +1,13 @@
+" ViM addons list
+" You can look for plugins with:
+"
+"     :AddonsInfo <Tab>
+"
+" For details about names, see :he VAM-addon-names
+" Empty lines or lines starting with " are ignored.
+
+"snipmate-snippets
+"surround
+"endwise
+
+" vim: filetype=vim
