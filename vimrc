@@ -1,4 +1,5 @@
 " Vim KickStart
+"     (type za on a section to fold/unfold)
 
 " Documentation {{{
 "  _    ___ __  ___   __ __ _       __   _____ __             __
@@ -27,11 +28,15 @@
 " https://github.com/v0n/vim-kickstart
 " }}}
 
-" Plugins list. Populated here and/or from the ~/.vim-addons file.
-let g:addons = []
-
 " VAM Setup {{{
 " :he VAM-installation
+
+" Plugins list. Filled here and/or from the ~/.vim-addons file.
+let g:addons = []
+
+fun! GetAddonsList(filename)
+  return filter(readfile(a:filename), 'v:val !~ "^\\s*$\\|^\""')
+endf
 
 fun! EnsureVamIsOnDisk(vam_install_path)
   if !isdirectory(a:vam_install_path.'/vim-addon-manager/autoload')
@@ -39,10 +44,6 @@ fun! EnsureVamIsOnDisk(vam_install_path)
     silent execute '!git clone --depth=1 git://github.com/MarcWeber/vim-addon-manager '.shellescape(a:vam_install_path, 1).'/vim-addon-manager'
     exec 'helptags '.fnameescape(a:vam_install_path.'/vim-addon-manager/doc')
   endif
-endf
-
-fun! GetAddonsList(filename)
-  return filter(readfile(a:filename), 'v:val !~ "^\\s*$\\|^\""')
 endf
 
 fun! SetupVAM()
@@ -66,8 +67,7 @@ endfun
 call SetupVAM()
 " }}}
 
-" Vim global configuration {{{
-" Mostly stolen from Janus.
+" ViM configuration {{{
 
 set nocompatible
 
@@ -78,19 +78,21 @@ syntax on
 " Set encoding
 set encoding=utf-8
 
-" Whitespace stuff
+" Whitespace/Indentation {{{
 set nowrap
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set noexpandtab
 set list listchars=tab:\ \ ,trail:·
+" }}}
 
-" Searching
+" Searching {{{
 set nohlsearch
 set incsearch
 set ignorecase
 set smartcase
+" }}}
 
 " Tab completion
 set wildmode=list:longest,list:full
@@ -114,6 +116,7 @@ function s:setupWrapping()
   set textwidth=72
 endfunction
 
+" Filetypes {{{
 " Thorfile, Rakefile, Vagrantfile and Gemfile are Ruby
 au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru} set ft=ruby
 
@@ -122,6 +125,7 @@ au BufNewFile,BufRead *.json set ft=javascript
 
 " Enable Wrapping for Markdown and txt files
 au BufRead,BufNewFile *.{txt,md,markdown,mdown,mkd,mkdn} call s:setupWrapping()
+" }}}
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -142,7 +146,6 @@ set shortmess=a
 " Directories for swp files
 "set backupdir=~/.vim/backup
 "set directory=~/.vim/backup
-" }}}
 
 " Plugins specific configuration {{{
 " gist-vim defaults
@@ -204,7 +207,7 @@ vmap <C-Up> [egv
 vmap <C-Down> ]egv
 " }}}
 
-" Other mappings {{{
+" Mappings {{{
 " Opens an edit command with the path of the currently edited file filled in
 " Normal mode: <Leader>e
 map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
@@ -216,6 +219,7 @@ map <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 " Inserts the path of the currently edited file into a command
 " Command mode: Ctrl+P
 cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
+" }}}
 " }}}
 
 " vim: fdm=marker
