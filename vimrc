@@ -34,7 +34,7 @@ let g:addons = []
 " :he VAM-installation
 
 fun! EnsureVamIsOnDisk(vam_install_path)
-  if !filereadable(a:vam_install_path.'/vim-addon-manager/.git/config')
+  if !isdirectory(a:vam_install_path.'/vim-addon-manager/autoload')
     call mkdir(a:vam_install_path, 'p')
     silent execute '!git clone --depth=1 git://github.com/MarcWeber/vim-addon-manager '.shellescape(a:vam_install_path, 1).'/vim-addon-manager'
     exec 'helptags '.fnameescape(a:vam_install_path.'/vim-addon-manager/doc')
