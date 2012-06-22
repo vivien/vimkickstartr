@@ -1,226 +1,119 @@
 " Vim KickStart
-"     (type za on a section to fold/unfold)
 
-" Documentation {{{
-"  _    ___ __  ___   __ __ _       __   _____ __             __
-" | |  / (_)  |/  /  / //_/(_)_____/ /__/ ___// /_____ ______/ /_
-" | | / / / /|_/ /  / ,<  / // ___/ //_/\__ \/ __/ __ `/ ___/ __/
-" | |/ / / /  / /  / /| |/ // /__/ ,<  ___/ / /_/ /_/ / /  / /_
-" |___/_/_/  /_/  /_/ |_/_/ \___/_/|_|/____/\__/\__,_/_/   \__/
+" DOCUMENTATION {{{
+"  _   ___         __ ___     __    ______           __
+" | | / (_)_ _    / //_(_)___/ /__ / __/ /____ _____/ /_
+" | |/ / /  ' \  / ,< / / __/  '_/_\ \/ __/ _ `/ __/ __/
+" |___/_/_/_/_/ /_/|_/_/\__/_/\_\/___/\__/\_,_/_/  \__/
 "
-" A Vim setup using the great MarcWerber's Vim Addons Manager (VAM).
-" https://github.com/MarcWeber/vim-addon-manager
+" This is a one-file setup for Vim.
+" It uses VAM, a pure VimL addons manager
+" (see https://github.com/MarcWeber/vim-addon-manager).
 "
-" The only requirement is this vimrc file.
-" It contains everything needed to install VAM and plugins.
-" Plugins can be listed in a simple ~/.vim-addons file.
+" Plugins found in the ".vim-addons" file in your home directory will be
+" activated. A sample plugin list looks like:
 "
-" Sample ~/.vim-addons file:
+"     $ cat ~/.vim-addons
+"     " My list of Vim addons
+"     Powerline
+"     surround
+"     endwise
 "
-"   " My list of ViM addons
-"   snipmate-snippets
-"   supertab
-"   fugitive
-"
-" This file might get big, but folding is made for that (:he za).
+" Find addons with ":AddonsInfo <Tab>".
 "
 " Vivien Didelot <vivien@didelot.org>
 " https://github.com/v0n/vim-kickstart
+"
 " }}}
 
-" VAM Setup {{{
-" :he VAM-installation
+" VAM SETUP {{{
+"
+" You shouldn't have to edit this.
+" See ":help VAM-installation" for alternatives
 
-" Plugins list. Filled here and/or from the ~/.vim-addons file.
-let g:addons = []
+func! SetupVAM()
+	let l:vam_install_path = expand('$HOME').'/.vim/vim-addons'
+	let l:addons_file = expand('$HOME').'/.vim-addons'
+	let l:addons = []
 
-fun! GetAddonsList(filename)
-  return filter(readfile(a:filename), 'v:val !~ "^\\s*$\\|^\""')
-endf
+	let g:vim_addon_manager = {}
+	let g:vim_addon_manager['auto_install'] = 1
+	let g:vim_addon_manager['shell_commands_run_method'] = 'system'
+	set nomore
 
-fun! EnsureVamIsOnDisk(vam_install_path)
-  if !isdirectory(a:vam_install_path.'/vim-addon-manager/autoload')
-    call mkdir(a:vam_install_path, 'p')
-    silent execute '!git clone --depth=1 git://github.com/MarcWeber/vim-addon-manager '.shellescape(a:vam_install_path, 1).'/vim-addon-manager'
-    exec 'helptags '.fnameescape(a:vam_install_path.'/vim-addon-manager/doc')
-  endif
-endf
+	if !isdirectory(l:vam_install_path.'/vim-addon-manager/autoload')
+		call mkdir(l:vam_install_path, 'p')
+		silent execute '!git clone --depth=1 https://github.com/MarcWeber/vim-addon-manager.git '.shellescape(l:vam_install_path, 1).'/vim-addon-manager'
+		execute 'helptags '.fnameescape(l:vam_install_path.'/vim-addon-manager/doc')
+	endif
+	execute 'set runtimepath+='.vam_install_path.'/vim-addon-manager'
 
-fun! SetupVAM()
-  let g:vim_addon_manager = {}
-  let g:vim_addon_manager['auto_install'] = 1
-  let g:vim_addon_manager['shell_commands_run_method'] = 'system'
-  set nomore
+	if filereadable(l:addons_file)
+		call extend(l:addons, filter(readfile(l:addons_file), 'v:val !~ "^\\s*$\\|^\""'))
+	endif
 
-  let vam_install_path = expand('$HOME') . '/.vim/vim-addons'
-  call EnsureVamIsOnDisk(vam_install_path)
-  exec 'set runtimepath+='.vam_install_path.'/vim-addon-manager'
-
-  let s:addons_file = expand('$HOME').'/.vim-addons'
-  if filereadable(s:addons_file)
-    call extend(g:addons, GetAddonsList(s:addons_file))
-  endif
-  call vam#ActivateAddons(g:addons)
-  unlet g:addons
-endfun
+	call vam#ActivateAddons(l:addons)
+endfunc
 
 call SetupVAM()
+
 " }}}
 
-" ViM configuration {{{
+" SETTINGS {{{
+"
+" Type ":help <option>" for details
 
 set nocompatible
-
+set encoding=utf-8
 set nonumber
 set ruler
-syntax on
+syntax enable
 
-" Set encoding
-set encoding=utf-8
-
-" Whitespace/Indentation {{{
 set nowrap
 set tabstop=4
-set shiftwidth=4
 set softtabstop=4
+set shiftwidth=4
 set noexpandtab
-set list listchars=tab:\ \ ,trail:·
-" }}}
+set list
+set listchars=tab:\ \ ,trail:.
+set listchars+=extends:>,precedes:<
 
-" Searching {{{
 set nohlsearch
 set incsearch
 set ignorecase
 set smartcase
-" }}}
 
-" Tab completion
-set wildmode=list:longest,list:full
-set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*
+set wildmenu
+set wildmode=list:full,full
+set wildignore+=*.swp,*~
+set wildignore+=.git,.svn
+set wildignore+=*.o,*.obj,*.class
+set wildignore+=*.zip,*.tar,*.gz,*.tgz,*.bz2
 
-" Status bar
+colorscheme ron
+
 set laststatus=2
+set showcmd
+set shortmess=a
+set modeline
 
-" Default color scheme
-color torte
-
-" Remember last location in file
-if has("autocmd")
-  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
-        \| exe "normal g'\"" | endif
-endif
-
-function s:setupWrapping()
-  set wrap
-  set wrapmargin=2
-  set textwidth=72
-endfunction
-
-" Filetypes {{{
-" Thorfile, Rakefile, Vagrantfile and Gemfile are Ruby
-au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru} set ft=ruby
-
-" Add json syntax highlighting
-au BufNewFile,BufRead *.json set ft=javascript
-
-" Enable Wrapping for Markdown and txt files
-au BufRead,BufNewFile *.{txt,md,markdown,mdown,mkd,mkdn} call s:setupWrapping()
-" }}}
-
-" allow backspacing over everything in insert mode
-set backspace=indent,eol,start
-
-" load the plugin and indent settings for the detected filetype
 filetype plugin indent on
 
-" Use modeline overrides
-set modeline
-set modelines=10
-
-" Show (partial) command in the status line
-set showcmd
-
-" Decrease messages size
-set shortmess=a
-
-" Directories for swp files
-"set backupdir=~/.vim/backup
-"set directory=~/.vim/backup
-
-" Plugins specific configuration {{{
-" gist-vim defaults
-if has("mac")
-  let g:gist_clip_command = 'pbcopy'
-elseif has("unix")
-  let g:gist_clip_command = 'xclip -selection clipboard'
+if has("autocmd")
+	autocmd BufNewFile,BufRead *.json setfiletype javascript
+	autocmd BufNewFile,BufRead *.{txt,md,markdown} set nolist wrap textwidth=80
+	autocmd BufNewFile,BufRead {Gemfile,Rakefile,Vagrantfile,Thorfile,Procfile,config.ru,*.rake} setfiletype ruby
+	autocmd BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 endif
-let g:gist_detect_filetype = 1
-let g:gist_open_browser_after_post = 1
 
-" Enable syntastic syntax checking
-let g:syntastic_enable_signs=1
-let g:syntastic_quiet_warnings=1
-
-" Without setting this, ZoomWin restores windows in a way that causes
-" equalalways behavior to be triggered the next time CommandT is used.
-" This is likely a bludgeon to solve some other issue, but it works
-"set noequalalways
-
-" Turn off jslint errors by default
-"let g:JSLintHighlightErrorLine = 0
-
-" MacVIM shift+arrow-keys behavior (required in .vimrc)
-"let macvim_hig_shift_movement = 1
-
-" % to bounce from do to end etc.
 runtime! macros/matchit.vim
 
-if has("gui_running")
-  " Automatically resize splits when resizing MacVim window
-  autocmd VimResized * wincmd =
-endif
+"set backupdir=~/.vim/_backup
+"set directory=~/.vim/_temp
 
-" NERDTree configuration
-let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$']
-map <Leader>n :NERDTreeToggle<CR>
+"let mapleader=","
 
-" Command-T configuration
-"let g:CommandTMaxHeight=20
-
-" ZoomWin configuration
-map <Leader><Leader> :ZoomWin<CR>
-
-" CTags
-map <Leader>rt :!ctags --extra=+f -R *<CR><CR>
-map <C-\> :tnext<CR>
-
-" Gundo configuration
-nmap <F5> :GundoToggle<CR>
-imap <F5> <ESC>:GundoToggle<CR>
-
-" Unimpaired configuration
-" Bubble single lines
-nmap <C-Up> [e
-nmap <C-Down> ]e
-" Bubble multiple lines
-vmap <C-Up> [egv
-vmap <C-Down> ]egv
 " }}}
 
-" Mappings {{{
-" Opens an edit command with the path of the currently edited file filled in
-" Normal mode: <Leader>e
-map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
-
-" Opens a tab edit command with the path of the currently edited file filled in
-" Normal mode: <Leader>t
-map <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
-
-" Inserts the path of the currently edited file into a command
-" Command mode: Ctrl+P
-cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
-" }}}
-" }}}
-
-" vim: fdm=marker
-finish
+" Toggle folding with "za"
+" vim: foldmethod=marker
