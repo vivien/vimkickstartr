@@ -1,36 +1,15 @@
-" Vim KickStart
 
-" DOCUMENTATION {{{
-"  _   ___         __ ___     __    ______           __
-" | | / (_)_ _    / //_(_)___/ /__ / __/ /____ _____/ /_
-" | |/ / /  ' \  / ,< / / __/  '_/_\ \/ __/ _ `/ __/ __/
-" |___/_/_/_/_/ /_/|_/_/\__/_/\_\/___/\__/\_,_/_/  \__/
-"
-" This is a one-file setup for Vim.
-" It uses VAM, a pure VimL addons manager
-" (see https://github.com/MarcWeber/vim-addon-manager).
-"
-" Plugins found in the ".vim-addons" file in your home directory will be
-" activated. A sample plugin list looks like:
-"
-"     $ cat ~/.vim-addons
-"     " My list of Vim addons
-"     Powerline
-"     surround
-"     endwise
-"
-" Update addons with ":UpdateAddons".
+" Plugin names found in "~/.vim-addons" are activated on startup.
+" Update manager and addons with ":UpdateAddons".
 " Find addons with ":AddonsInfo <Tab>".
 "
-" Vivien Didelot <vivien@didelot.org>
-" https://github.com/v0n/vim-kickstart
-"
-" }}}
+" Vim KickStart: https://github.com/v0n/vim-kickstart
+" VAM: https://github.com/MarcWeber/vim-addon-manager
 
-" VAM SETUP {{{
-"
-" You shouldn't have to edit this.
-" See ":help VAM-installation" for alternatives
+" Addon Manager Setup {{{
+
+" You don't need to edit the following function.
+" See ":help VAM-installation" for alternatives.
 
 function! SetupVAM()
 	let l:vam_install_path = expand('$HOME').'/.vim/vim-addons'
@@ -64,8 +43,6 @@ call SetupVAM()
 
 " }}}
 
-" SETTINGS
-"
 " Type ":help <option>" for details
 
 set nocompatible
@@ -117,5 +94,4 @@ runtime! macros/matchit.vim
 
 "let mapleader=","
 
-" Toggle folding with "za"
 " vim: foldmethod=marker
