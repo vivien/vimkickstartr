@@ -47,15 +47,22 @@ call SetupVAM()
 
 set nocompatible
 set encoding=utf-8
+set laststatus=2
+set nomodeline
 set nonumber
 set ruler
+set showcmd
+set shortmess=at
 syntax enable
+
+colorscheme ron
 
 set nowrap
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set noexpandtab
+
 set list
 set listchars=tab:\ \ ,trail:.
 set listchars+=extends:>,precedes:<
@@ -71,13 +78,6 @@ set wildignore+=*.swp,*~
 set wildignore+=.git,.svn
 set wildignore+=*.o,*.obj,*.class
 set wildignore+=*.zip,*.tar,*.gz,*.tgz,*.bz2
-
-colorscheme ron
-
-set laststatus=2
-set showcmd
-set shortmess=a
-set nomodeline
 
 filetype plugin indent on
 
