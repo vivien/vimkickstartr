@@ -19,6 +19,7 @@
 "     surround
 "     endwise
 "
+" Update addons with ":UpdateAddons".
 " Find addons with ":AddonsInfo <Tab>".
 "
 " Vivien Didelot <vivien@didelot.org>
