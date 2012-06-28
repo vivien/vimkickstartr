@@ -32,7 +32,7 @@
 " You shouldn't have to edit this.
 " See ":help VAM-installation" for alternatives
 
-func! SetupVAM()
+function! SetupVAM()
 	let l:vam_install_path = expand('$HOME').'/.vim/vim-addons'
 	let l:addons_file = expand('$HOME').'/.vim-addons'
 	let l:addons = []
@@ -44,17 +44,21 @@ func! SetupVAM()
 
 	if !isdirectory(l:vam_install_path.'/vim-addon-manager/autoload')
 		call mkdir(l:vam_install_path, 'p')
-		silent execute '!git clone --depth=1 https://github.com/MarcWeber/vim-addon-manager.git '.shellescape(l:vam_install_path, 1).'/vim-addon-manager'
-		execute 'helptags '.fnameescape(l:vam_install_path.'/vim-addon-manager/doc')
+		let l:repo = 'https://github.com/MarcWeber/vim-addon-manager.git'
+		let l:path = shellescape(l:vam_install_path, 1).'/vim-addon-manager'
+		let l:doc = fnameescape(l:vam_install_path.'/vim-addon-manager/doc')
+		silent execute '!git clone --depth=1' l:repo l:path
+		execute 'helptags' doc
 	endif
-	execute 'set runtimepath+='.vam_install_path.'/vim-addon-manager'
+	execute 'set runtimepath+='.l:vam_install_path.'/vim-addon-manager'
 
 	if filereadable(l:addons_file)
-		call extend(l:addons, filter(readfile(l:addons_file), 'v:val !~ "^\\s*$\\|^\""'))
+		let l:content = readfile(l:addons_file)
+		call extend(l:addons, filter(l:content, 'v:val !~ "^\\s*$\\|^\""'))
 	endif
 
 	call vam#ActivateAddons(l:addons)
-endfunc
+endfunction
 
 call SetupVAM()
 
