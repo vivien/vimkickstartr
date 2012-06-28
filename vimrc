@@ -101,7 +101,7 @@ filetype plugin indent on
 
 if has("autocmd")
 	autocmd BufNewFile,BufRead *.json setfiletype javascript
-	autocmd BufNewFile,BufRead *.{txt,md,markdown} set nolist wrap textwidth=80
+	autocmd BufNewFile,BufRead *.{txt,md,markdown} set nolist spell wrap textwidth=80
 	autocmd BufNewFile,BufRead {Gemfile,Rakefile,Vagrantfile,Thorfile,Procfile,config.ru,*.rake} setfiletype ruby
 endif
 
