@@ -83,9 +83,9 @@ filetype plugin indent on
 
 if has("autocmd")
 	autocmd BufNewFile,BufRead *.json setfiletype javascript
-	autocmd BufNewFile,BufRead *.{txt,md,markdown} set nolist spell wrap textwidth=80
+	autocmd BufNewFile,BufRead *.{txt,md,markdown} setlocal nolist spell wrap textwidth=80
 	autocmd BufNewFile,BufRead {Gemfile,Rakefile,Vagrantfile,Thorfile,Procfile,config.ru,*.rake} setfiletype ruby
-	autocmd BufReadPost ~/.{vimrc,vim-addons} setfiletype vim | set foldmethod=marker
+	autocmd BufReadPost ~/.{vimrc,vim-addons} setfiletype vim | setlocal foldmethod=marker
 endif
 
 runtime! macros/matchit.vim
