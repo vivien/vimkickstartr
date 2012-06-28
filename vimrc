@@ -59,7 +59,7 @@ call SetupVAM()
 
 " }}}
 
-" SETTINGS {{{
+" SETTINGS
 "
 " Type ":help <option>" for details
 
@@ -112,8 +112,6 @@ runtime! macros/matchit.vim
 "set directory=~/.vim/_temp
 
 "let mapleader=","
-
-" }}}
 
 " Toggle folding with "za"
 " vim: foldmethod=marker
