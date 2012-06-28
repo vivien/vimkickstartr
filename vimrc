@@ -77,7 +77,7 @@ colorscheme ron
 set laststatus=2
 set showcmd
 set shortmess=a
-set modeline
+set nomodeline
 
 filetype plugin indent on
 
@@ -85,6 +85,7 @@ if has("autocmd")
 	autocmd BufNewFile,BufRead *.json setfiletype javascript
 	autocmd BufNewFile,BufRead *.{txt,md,markdown} set nolist spell wrap textwidth=80
 	autocmd BufNewFile,BufRead {Gemfile,Rakefile,Vagrantfile,Thorfile,Procfile,config.ru,*.rake} setfiletype ruby
+	autocmd BufReadPost ~/.{vimrc,vim-addons} setfiletype vim | set foldmethod=marker
 endif
 
 runtime! macros/matchit.vim
@@ -93,5 +94,3 @@ runtime! macros/matchit.vim
 "set directory=~/.vim/_temp
 
 "let mapleader=","
-
-" vim: foldmethod=marker
