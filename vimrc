@@ -84,11 +84,28 @@ set wildignore+=*.zip,*.tar,*.gz,*.tgz,*.bz2
 
 filetype plugin indent on
 
+function! Human()
+	setlocal dictionary=/usr/share/dict/words
+	setlocal complete=.,w,k
+	setlocal keywordprg=sdcv
+	setlocal textwidth=79
+	setlocal formatoptions+=t
+	setlocal infercase
+	setlocal nolist
+	setlocal spell
+	setlocal wrap
+endfunction
+
 if has("autocmd")
 	autocmd BufNewFile,BufRead *.json setlocal filetype=javascript
-	autocmd BufNewFile,BufRead *.{md,markdown} setfiletype markdown | setlocal nolist spell wrap textwidth=80 infercase
 	autocmd BufNewFile,BufRead {Gemfile,Rakefile,Vagrantfile,Thorfile,Procfile,config.ru,*.rake} setfiletype ruby
 	autocmd BufReadPost ~/.{vimrc,vim-addons} setfiletype vim | setlocal foldmethod=marker
+	augroup human
+		autocmd BufNewFile,BufRead *.{md,markdown} setfiletype markdown
+		autocmd BufNewFile,BufRead *.txt call Human()
+		autocmd FileType markdown call Human()
+		autocmd FileType help setlocal nospell
+	augroup END
 endif
 
 runtime! macros/matchit.vim
