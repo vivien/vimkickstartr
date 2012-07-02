@@ -66,7 +66,7 @@ set smarttab
 set smartindent
 
 set list
-set listchars=tab:\ \ ,trail:.
+set listchars=tab:\ \ ,trail:·
 set listchars+=extends:>,precedes:<
 
 set nohlsearch
