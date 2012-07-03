@@ -7,22 +7,26 @@ Usage
 -----
 
 * Use this [vimrc](https://github.com/v0n/vim-kickstart/blob/master/vimrc) as 
-  your Vim config. Do it in a safer way (back things up first) with:
+  your Vim config. Back things up first with:
+
   `curl -sS -L https://raw.github.com/v0n/vim-kickstart/master/get.sh | sh`;
+
 * List plugins you want to use in your **`~/.vim-addons`** file. For instance:
+  <pre>
+  " My list of Vim addons
+  snipmate-snippets
+  supertab
+  fugitive
+  </pre>
 
-	  " My list of Vim addons
-      snipmate-snippets
-      supertab
-      fugitive
+* On the next start, Vim will fetch the
+  [vim-addon-manager](https://github.com/MarcWeber/vim-addon-manager), download
+  and activate every plugin you listed.
 
-On the next start, Vim will fetch the
-[vim-addon-manager](https://github.com/MarcWeber/vim-addon-manager),
-download and activate every plugin you listed.
+* Update plugins with `:UpdateAddons`.
 
-Update plugins with `:UpdateAddons`. Check VAM's doc for other useful commands.
-
-Find some details about plugins with `:he VAM-addon-names`, or check some 
+Check the VAM documentation for further information: `:he VAM-intro`.
+Find some details about plugins with `:he VAM-addon-names`, or check some
 [sample addons lists](https://github.com/v0n/vim-kickstart/tree/master/lists).
 
 Goal
