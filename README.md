@@ -6,67 +6,56 @@
 Usage
 -----
 
-Just put the content of this
-[vimrc](https://github.com/v0n/vim-kickstart/blob/master/vimrc) into
-your `~/.vimrc` file, and you're ready!
+* Use this [vimrc](https://github.com/v0n/vim-kickstart/blob/master/vimrc) as 
+  your Vim config. Do it in a safer way (back things up first) with:
+  `curl -sS -L https://raw.github.com/v0n/vim-kickstart/master/get.sh | sh`;
+* List plugins you want to use in your **`~/.vim-addons`** file. For instance:
 
-Do it in a safe way (backing up your current Vim config first) with:
-
-    curl -sS -L https://raw.github.com/v0n/vim-kickstart/master/bootstrap.sh | sh
-
-Then, list every plugin you want in your `~/.vim-addons` file.
-For instance:
-
-    " My list of Vim addons
-    snipmate-snippets
-    supertab
-    fugitive
-
-To find out some plugin names, checkout some Vim KickStart
-[sample addons lists](https://github.com/v0n/vim-kickstart/tree/master/lists), or type `:he VAM-addon-names` from within Vim for details.
+	  " My list of Vim addons
+      snipmate-snippets
+      supertab
+      fugitive
 
 On the next start, Vim will fetch the
 [vim-addon-manager](https://github.com/MarcWeber/vim-addon-manager),
-download and activate every plugin you've listed in `~/.vim-addons`.
+download and activate every plugin you listed.
 
-See the VAM documentation for useful commands, such as `:UpdateAddons`!
+Update plugins with `:UpdateAddons`. Check VAM's doc for other useful commands.
+
+Find some details about plugins with `:he VAM-addon-names`, or check some 
+[sample addons lists](https://github.com/v0n/vim-kickstart/tree/master/lists).
 
 Goal
 ----
 
 Some of the main ideas:
 
-* All your Vim config is in your .vimrc
-* Pure VimL config (thanks to Marc Weber for [VAM](https://github.com/MarcWeber/vim-addon-manager)!)
-* Should be flexible and work everywhere (no headache on configuration)
-* Using a plugin should be as easy as adding its name to a file
-* The config should be minimalist (no overkill mapping)
+* All you need is your .vimrc file;
+* The config should be minimalist (no overkill mapping);
+* Using a plugin should be as easy as adding its name to a file;
+* Pure VimL config (thanks to Marc Weber for 
+  [VAM](https://github.com/MarcWeber/vim-addon-manager)!).
 
 Why not another "Vim distribution"?
 -----------------------------------
 
-There are several other Vim setups, like [Janus](https://github.com/carlhuda/janus)
-or [spf13-vim](https://github.com/spf13/spf13-vim), but none will match
-your needs exactly (it often includes many plugins you don't care
-about). They often depends on a scripting language to install and manage
-plugins. Moreover, having a `~/.vimrc.before`, a `~/.vimrc.after`, or
-whatever, in addition to your `~/.vimrc`, sucks a lot.
+There are other Vim setups, like [Janus](https://github.com/carlhuda/janus)
+or [spf13-vim](https://github.com/spf13/spf13-vim), but none will match exactly
+your criteria, because:
 
-Someone can say this vimrc might get big, but who cares, folding is
-made for that (just open this vimrc with Vim to see how it looks) ;)
-And another good point is that a single config file is more portable.
+* They include many plugins you don't care about;
+* They depend on a scripting language to install and manage plugins.
+* Writing `~/.vimrc.after`, or anything else but your `~/.vimrc`, is pointless.
 
-So the best solution is to get a nice prepared and documented vimrc as a
-base, embedding simple support for plugin management, and tweak it to
-fit your needs if necessary!
+Vim KickStart's vimrc only contains a clean base for settings, and the setup 
+code for the addon manager (which is folded).
 
-Contribution
-------------
+Feedback
+--------
 
-I'd like Vim KickStart to work fine on many platforms, and dealing well with
-every Vim version (no crash or error because of dependencies or whatever).
-I'd be glad to receive any feedback or contribution on this config.
-Feel free to send a message/request :)
+I'd like Vim KickStart to be as simple as possible, and a good base to start.
+I'd be glad to receive any feedback or contribution on this setup.
+Feel free to send a message/request :-)
 
 
 
