@@ -76,7 +76,6 @@ filetype plugin indent on
 
 if has("autocmd")
 	autocmd BufNewFile,BufRead *.json setlocal filetype=javascript
-	autocmd BufNewFile,BufRead *.{md,markdown} setfiletype markdown | setlocal nolist spell wrap textwidth=80 infercase
 	autocmd BufNewFile,BufRead {Gemfile,Rakefile,Vagrantfile,Thorfile,Procfile,config.ru,*.rake} setfiletype ruby
 	autocmd BufReadPost ~/.{vimrc,vim-addons} setfiletype vim | setlocal foldmethod=marker
 endif
