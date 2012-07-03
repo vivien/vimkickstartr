@@ -7,20 +7,16 @@
 " VAM: https://github.com/MarcWeber/vim-addon-manager
 
 " Addon Manager Setup {{{
-
 " You don't need to edit the following function.
 " See ":help VAM-installation" for alternatives.
-
 function! SetupVAM()
 	let l:vam_install_path = expand('$HOME').'/.vim/vim-addons'
 	let l:addons_file = expand('$HOME').'/.vim-addons'
 	let l:addons = []
-
 	let g:vim_addon_manager = {}
 	let g:vim_addon_manager['auto_install'] = 1
 	let g:vim_addon_manager['shell_commands_run_method'] = 'system'
 	set nomore
-
 	if !isdirectory(l:vam_install_path.'/vim-addon-manager/autoload')
 		call mkdir(l:vam_install_path, 'p')
 		let l:repo = 'https://github.com/MarcWeber/vim-addon-manager.git'
@@ -30,17 +26,13 @@ function! SetupVAM()
 		execute 'helptags' doc
 	endif
 	execute 'set runtimepath+='.l:vam_install_path.'/vim-addon-manager'
-
 	if filereadable(l:addons_file)
 		let l:content = readfile(l:addons_file)
 		call extend(l:addons, filter(l:content, 'v:val !~ "^\\s*$\\|^\""'))
 	endif
-
 	call vam#ActivateAddons(l:addons)
 endfunction
-
 call SetupVAM()
-
 " }}}
 
 " Type ":help <option>" for details
@@ -76,9 +68,8 @@ set smartcase
 
 set wildmenu
 set wildmode=list:full,full
-set wildignore+=*.swp,*~
 set wildignore+=.git,.svn
-set wildignore+=*.o,*.obj,*.class
+set wildignore+=*.swp,*~,*.o,*.obj,*.class
 set wildignore+=*.zip,*.tar,*.gz,*.tgz,*.bz2
 
 filetype plugin indent on
