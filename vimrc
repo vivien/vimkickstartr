@@ -56,6 +56,7 @@ set shiftwidth=4
 set noexpandtab
 set smarttab
 set smartindent
+set formatoptions=croqj
 
 set list
 set listchars=tab:\ \ ,trail:·
