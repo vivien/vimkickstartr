@@ -3,7 +3,7 @@
 " Update manager and addons with ":UpdateAddons".
 " Find addons with ":AddonsInfo <Tab>".
 "
-" Vim KickStart: https://github.com/v0n/vim-kickstart
+" VimKickStartR: https://github.com/v0n/vimkickstartr
 " VAM: https://github.com/MarcWeber/vim-addon-manager
 
 " Addon Manager Setup {{{

@@ -1,15 +1,15 @@
-     _   ___         __ ___     __    ______           __
-    | | / (_)_ _    / //_(_)___/ /__ / __/ /____ _____/ /_
-    | |/ / /  ' \  / ,< / / __/  '_/_\ \/ __/ _ `/ __/ __/
-    |___/_/_/_/_/ /_/|_/_/\__/_/\_\/___/\__/\_,_/_/  \__/
+     _   __ _         __ __ _       __        __              __   ___
+    | | / /(_)__ _   / //_/(_)____ / /__ ___ / /_ ___ _ ____ / /_ / _ \
+    | |/ // //  ' \ / ,<  / // __//  '_/(_-</ __// _ `// __// __// , _/
+    |___//_//_/_/_//_/|_|/_/ \__//_/\_\/___/\__/ \_,_//_/   \__//_/|_|
 
 Usage
 -----
 
-* Use this [vimrc](https://github.com/v0n/vim-kickstart/blob/master/vimrc) as 
+* Use this [vimrc](https://github.com/v0n/vimkickstartr/blob/master/vimrc) as
   your Vim config. Back things up first with:
 
-  `curl -sS -L https://raw.github.com/v0n/vim-kickstart/master/get.sh | sh`;
+  `curl -sS -L https://raw.github.com/v0n/vimkickstartr/master/get.sh | sh`;
 
 * List plugins you want to use in your **`~/.vim-addons`** file. For instance:
   <pre>
@@ -27,7 +27,7 @@ Usage
 
 Check the VAM documentation for further information: `:he VAM-intro`.
 Find some details about plugins with `:he VAM-addon-names`, or check some
-[sample addons lists](https://github.com/v0n/vim-kickstart/tree/master/lists).
+[sample addons lists](https://github.com/v0n/vimkickstartr/tree/master/lists).
 
 Goal
 ----
@@ -51,13 +51,13 @@ your criteria, because:
 * They depend on a scripting language to install and manage plugins.
 * Writing `~/.vimrc.after`, or anything else but your `~/.vimrc`, is pointless.
 
-Vim KickStart's vimrc only contains a clean base for settings, and the setup 
+VimKickStartR's vimrc only contains a clean base for settings, and the setup
 code for the addon manager (which is folded).
 
 Feedback
 --------
 
-I'd like Vim KickStart to be as simple as possible, and a good base to start.
+I'd like VimKickStartR to be as simple as possible, and a good base to start.
 I'd be glad to receive any feedback or contribution on this setup.
 Feel free to send a message/request :-)
 
