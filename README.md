@@ -14,7 +14,7 @@ Usage
 * List plugins you want to use in your **`~/.vim-addons`** file. For instance:
   <pre>
   " My list of Vim addons
-  snipmate-snippets
+  UltiSnips
   supertab
   fugitive
   </pre>
