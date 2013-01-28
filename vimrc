@@ -55,7 +55,6 @@ set softtabstop=4
 set shiftwidth=4
 set noexpandtab
 set smarttab
-set smartindent
 set formatoptions=croq
 
 set list
