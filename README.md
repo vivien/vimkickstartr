@@ -6,10 +6,10 @@
 Usage
 -----
 
-* Use this [vimrc](https://github.com/v0n/vimkickstartr/blob/master/vimrc) as
+* Use this [vimrc](https://github.com/vivien/vimkickstartr/blob/master/vimrc) as
   your Vim config. Back things up first with:
 
-  `curl -sS -L https://raw.github.com/v0n/vimkickstartr/master/get.sh | sh`;
+  `curl -sS -L https://raw.github.com/vivien/vimkickstartr/master/get.sh | sh`;
 
 * List plugins you want to use in your **`~/.vim-addons`** file. For instance:
   <pre>
@@ -27,7 +27,7 @@ Usage
 
 Check the VAM documentation for further information: `:he VAM-intro`.
 Find some details about plugins with `:he VAM-addon-names`, or check some
-[sample addons lists](https://github.com/v0n/vimkickstartr/tree/master/lists).
+[sample addons lists](https://github.com/vivien/vimkickstartr/tree/master/lists).
 
 Goal
 ----
