@@ -78,7 +78,7 @@ if has("autocmd")
 	autocmd BufNewFile,BufRead *.json setlocal filetype=javascript
 	autocmd BufNewFile,BufRead {Gemfile,Rakefile,Vagrantfile,Thorfile,Procfile,config.ru,*.rake} setfiletype ruby
 	autocmd BufReadPost ~/.vim-addons setfiletype vim
-	autocmd FileType vim setlocal foldmethod=marker keywordprg=:help
+	autocmd FileType vim,help setlocal foldmethod=marker keywordprg=:help
 endif
 
 runtime! macros/matchit.vim
