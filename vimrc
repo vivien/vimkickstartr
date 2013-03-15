@@ -40,7 +40,7 @@ call SetupVAM()
 set nocompatible
 set encoding=utf-8
 set laststatus=2
-set nomodeline
+set modeline
 set nonumber
 set ruler
 set showcmd
