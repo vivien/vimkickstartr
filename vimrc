@@ -49,6 +49,8 @@ syntax enable
 
 colorscheme ron
 
+set scrolloff=7
+
 set nowrap
 set tabstop=4
 set softtabstop=4
