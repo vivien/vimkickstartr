@@ -5,5 +5,4 @@
 " Update them with ":UpdateAddons"
 " For details about names, see ":he VAM-addon-names"
 
-"Syntastic
-"UltiSnips
+github:itchyny/lightline.vim

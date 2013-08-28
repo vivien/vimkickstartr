@@ -1,6 +1,6 @@
 " Some useful Vim addons
 
-"powerline
+"github:itchyny/lightline.vim
 "gnupg%3645
 "UltiSnips
 "surround
